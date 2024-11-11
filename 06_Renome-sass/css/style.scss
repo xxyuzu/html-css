@@ -1,0 +1,374 @@
+@charset "utf-8";
+
+$color-text: #404040;
+$color-main: #985E5B;
+
+$breakpoints: (
+    "tablet": "screen and (min-width: 640px)",
+    "desktop": "screen and (min-width: 800px)",
+    "full": "screen and (min-width: 1200px)",
+    ) !default;
+
+@mixin m-query($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin m-inner($w: 90%, $mw: 1200px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin m-flex($a: center, $j: space-between) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin m-title-main() {
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: (27/18
+    );
+text-transform: uppercase;
+}
+
+body {
+    color: $color-text;
+    font-family: Helvetica,
+        Arial,
+        sans-serif;
+    font-size: 14px;
+    line-height: (21/14);
+    letter-spacing: (100em/1000);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+/* header */
+.header {
+    padding: 40px 0;
+
+    &__inner {
+        @include m-inner();
+        @include m-flex();
+    }
+}
+
+/* footer */
+.footer {
+    padding: 40px 0;
+    background-color: #EDEFF2;
+
+    &__inner {
+        @include m-inner();
+        @include m-flex(center, center);
+        flex-direction: column;
+
+        @include m-query(desktop) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__copy {
+        margin-top: 25px;
+        font-size: 12px;
+        line-height: (18/12);
+
+        @include m-query(desktop) {
+            margin-top: 0;
+        }
+    }
+}
+
+// nav
+.nav {
+    &__list {
+        @include m-flex();
+    }
+
+    &__item {
+        margin-left: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: (18/12);
+        text-transform: uppercase;
+    }
+
+    &__active {
+        color: $color-main;
+    }
+}
+
+.post {
+    &__pic {
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    &__number {
+        display: inline-block;
+        background-color: $color-main ;
+        color: #fff;
+        position: absolute;
+        top: (30/285)*100%;
+        left: (30/380)*100%;
+        width: (50/300)*100%;
+        // height: 50px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__text {
+        margin-bottom: 50px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .btn {
+        margin-top: auto;
+
+        @include m-query(tablet) {
+            width: 100%;
+        }
+    }
+
+}
+
+.btn {
+    display: block;
+    width: 300px;
+    margin-top: 50px;
+    padding: 18px;
+    background-color: $color-main;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mobile {
+    @include m-query(tablet) {
+        display: none;
+    }
+}
+
+/* index.html
+-----------------------*/
+/* visual */
+.visual {
+    margin-bottom: 100px;
+    padding: 400px 0 100px;
+    background: url(../images/pic_main.png) no-repeat center / cover;
+    color: #fff;
+    text-align: right;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        font-size: 42px;
+        font-weight: bold;
+        line-height: (50/42);
+
+        @include m-query(desktop) {
+            font-size: 50px;
+            line-height: (60/50);
+        }
+    }
+
+    &__lead {
+        font-size: 18px;
+        line-height: (22/18);
+    }
+}
+
+/* contents */
+.contents {
+    &__inner {
+        @include m-inner();
+
+        @include m-query(desktop) {
+            @include m-flex(flex-start);
+        }
+    }
+}
+
+/* services */
+.services {
+    margin-bottom: 100px;
+
+    @include m-query(desktop) {
+        width: (700/1200)*100%;
+    }
+
+    &__title {
+        @include m-title-main();
+    }
+
+    &__list {
+        margin-bottom: -80px;
+
+        @include m-query(tablet) {
+            @include m-flex(stretch);
+
+        }
+    }
+
+    &__item {
+        margin-bottom: 80px;
+
+        @include m-query(tablet) {
+            width: (330/700)*100%;
+            @include m-flex();
+            flex-direction: column;
+        }
+    }
+}
+
+/* information */
+.information {
+    margin-bottom: 100px;
+
+    @include m-query(desktop) {
+        width: (400/1200)*100%;
+    }
+
+    &__title {
+        @include m-title-main();
+    }
+
+    &__item {
+
+        @include m-flex(center, flex-start);
+        margin-top: 15px;
+
+    }
+
+    &__term {
+        width: 92px;
+        margin-right: 30px;
+        padding: 8px 12px;
+        border-right: 2px solid;
+        border-bottom: 1px solid;
+        color: $color-main;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    &__desc {
+        flex: 1;
+        overflow-wrap: anywhered;
+    }
+}
+
+// about.html
+
+// concept
+
+.concept {
+    margin: 60px 0 100px;
+    text-align: center;
+
+    &__inner {
+        @include m-inner()
+    }
+
+    &__title {
+        // display: inline-block;
+        width: fit-content;
+        margin: 0 auto 60px;
+        padding-bottom: 15px;
+        font-size: 42px;
+        font-weight: bold;
+        line-height: (50/42);
+        border-bottom: 4px $color-main solid;
+
+        @include m-query(desktop) {
+            font-size: 50px;
+            line-height: (50/60);
+        }
+
+    }
+
+    &__text {
+        max-width: 754px;
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 36px 18p;
+    }
+
+    span {
+        display: inline-block;
+    }
+}
+
+// floor
+
+.floor {
+    margin-bottom: 100px;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        @include m-title-main();
+    }
+
+    &__list {
+        @include m-query(desktop) {
+            @include m-flex(stretch);
+            margin-bottom: -80px;
+        }
+    }
+
+    &__item {
+        margin-bottom: 80px;
+
+        @include m-query(desktop) {
+            width: (380/1200)*100%;
+
+        }
+
+        img {
+            width: 100%;
+            aspect-ratio: 560/315;
+            object-fit: cover;
+
+            @include m-query(desktop) {
+                aspect-ratio: 380/285;
+            }
+
+        }
+    }
+
+
+}
+
+
+// footer
+
+.footer {
+    &__inner {
+        @include m-inner();
+    }
+}

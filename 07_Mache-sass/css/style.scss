@@ -1,0 +1,282 @@
+@charset"utf-8";
+
+$color-main: #2B2B2B;
+$color-text: #5A5A5A;
+$color-acsent: #ED145B;
+$color-back: #000;
+$color-sub: #fff;
+
+$breakpoints: (
+    "tablet": "screen and (min-width: 640px)",
+    "desktop": "screen and (min-width: 800px)",
+    "full": "screen and (min-width: 1300px)",
+    ) !default;
+
+@mixin m-query($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin m-inner($w: 90%, $mw: 1200px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin m-flex($a: center, $j: space-between) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin m-btn {
+    background-color: $color-acsent;
+    text-align: center;
+    padding: 17px 50px 17px;
+    font-weight: bold;
+    color: $color-sub;
+
+}
+
+body {
+    color: $color-text;
+    font-family: Verdana;
+    font-size: 14px;
+    line-height: (24/14
+    );
+letter-spacing: (25/1000);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+// header
+
+.header {
+    background-color: $color-back;
+    padding: 40px 0;
+
+    &__inner {
+        @include m-inner();
+        @include m-flex();
+    }
+}
+
+.nav {
+    &__list {
+        @include m-flex();
+    }
+
+    &__item {
+        margin-left: 30px;
+        font-weight: bold;
+        line-height: (24/14);
+        color: $color-sub;
+    }
+
+    &__active {
+        color: $color-acsent;
+    }
+}
+
+// footer
+.footer {
+    background-color: $color-back;
+    padding: 60px 0 160px;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__copy {
+
+        color: $color-sub;
+        background-color: $color-back;
+    }
+}
+
+
+
+// top
+.top {
+    @include m-query(desktop) {
+        text-align: center;
+    }
+
+    padding: 150px 0;
+    background-image: url(../images/bg_mainvisual.png);
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        font-size: 46px;
+        font-weight: bold;
+        letter-spacing: (55/46);
+        color: $color-sub;
+
+
+        span {
+            color: $color-acsent;
+        }
+    }
+
+    &__text {
+        padding: 40px 0 80px;
+        color: $color-sub ;
+    }
+
+    .btn {
+        @include m-btn();
+
+    }
+
+}
+
+// updates
+
+.updates {
+    padding: 80px 0;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        font-size: 38px;
+        font-weight: bold;
+        letter-spacing: (55/46);
+        color: $color-main;
+        text-align: center;
+    }
+
+    &__item {
+        @include m-query(desktop) {
+            width: (260/900)*100%;
+        }
+    }
+
+    &__box {
+        @include m-query(desktop) {
+            @include m-flex();
+        }
+    }
+
+
+}
+
+
+.post {
+
+
+    padding: 30px 0;
+
+    &__title {
+        width: fit-content;
+        margin-top: 30px;
+        padding: 7px 10px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: $color-back ;
+        color: $color-sub;
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+
+        @include m-query(desktop) {
+            aspect-ratio: 4/3;
+        }
+
+    }
+
+    &__text {
+        padding-top: 20px;
+
+    }
+}
+
+// about
+
+
+// services
+
+.services {
+    padding: 80px 0;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        font-size: 38px;
+        font-weight: bold;
+        letter-spacing: (55/46);
+        color: $color-main;
+        text-align: center;
+    }
+
+    &__item {
+        @include m-query(desktop) {
+            width: (200/420)*100%;
+        }
+    }
+
+    &__box {
+        @include m-query(desktop) {
+            @include m-flex();
+
+        }
+    }
+
+
+}
+
+.testimonials {
+    padding: 80px 0 80px;
+    text-align: center;
+    background-image: url(../images/bg_testimonials.png);
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__box {
+        padding: 50px;
+        background-color: $color-sub ;
+    }
+
+    &__title {
+        padding-bottom: 50px;
+        font-size: 38px;
+        font-weight: bold;
+        letter-spacing: (55/46);
+        color: $color-main;
+        text-align: center;
+    }
+
+    &__text {
+        color: $color-text;
+        padding: 37px 0 30px;
+        font-weight: italic;
+        font-size: 16px;
+    }
+
+    &__subtext {
+        padding-bottom: 40px;
+    }
+
+    .btn {
+        @include m-btn();
+        background-color: #EDAA14;
+    }
+}
