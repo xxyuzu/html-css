@@ -170,16 +170,24 @@ img {
   text-align: center;
 }
 @media screen and (min-width: 800px) {
-  .services__item {
-    width: 47.619047619%;
-  }
-}
-@media screen and (min-width: 800px) {
   .services__box {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+  }
+}
+@media screen and (min-width: 800px) {
+  .services__item {
+    width: 47.619047619%;
+  }
+}
+.services__item:nth-child(odd) .post__title {
+  margin-left: auto;
+}
+@media screen and (min-width: 800px) {
+  .services__item:nth-child(odd) .post__title {
+    margin-left: 0;
   }
 }
 
@@ -211,6 +219,9 @@ img {
   padding: 37px 0 30px;
   font-weight: italic;
   font-size: 16px;
+}
+.testimonials__text span {
+  display: inline-block;
 }
 .testimonials__subtext {
   padding-bottom: 40px;

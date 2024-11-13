@@ -225,17 +225,30 @@ img {
         text-align: center;
     }
 
-    &__item {
-        @include m-query(desktop) {
-            width: (200/420)*100%;
-        }
-    }
-
     &__box {
         @include m-query(desktop) {
             @include m-flex();
 
         }
+    }
+
+    &__item {
+        @include m-query(desktop) {
+            width: (200/420)*100%;
+        }
+
+        &:nth-child(odd) {
+            .post__title {
+                margin-left: auto;
+
+                @include m-query(desktop) {
+                    margin-left: 0;
+                }
+            }
+
+        }
+
+
     }
 
 
@@ -269,6 +282,10 @@ img {
         padding: 37px 0 30px;
         font-weight: italic;
         font-size: 16px;
+
+        span {
+            display: inline-block;
+        }
     }
 
     &__subtext {

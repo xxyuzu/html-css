@@ -1,0 +1,108 @@
+@charset"utf-8";
+
+$color-main: #244D4D;
+$color-bg: #F4F4F4;
+
+@mixin m-flex($a: center, $j: space-between) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin m-inner($w: (640/740)*100%, $mw: 1000px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+$breakpoints: (
+    "desktop": "screen and (min-width: 740px)",
+    ) !default;
+
+@mixin m-query($breakpoint: "desktop") {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+// base
+
+body {
+    color: $color-main;
+    font-size: (16em/16
+    );
+font-family: 'Gill Sans',
+    'Gill Sans MT',
+    Calibri,
+    'Trebuchet MS',
+    sans-serif;
+line-height: (27/16);
+letter-spacing: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+// header
+
+.header {
+    padding: (40em/16) 0;
+
+
+
+    &__inner {
+        @include m-inner();
+        @include m-flex();
+    }
+
+    &__logo {
+        font-size: (26em/16);
+        font-weight: bold;
+    }
+}
+
+.nav {
+    &__list {
+        @include m-flex();
+    }
+
+    &__item {
+        margin-left: 30px;
+        line-height: (27/16);
+        color: $color-main;
+    }
+
+}
+
+// main
+
+// about
+.top {
+    padding: (140em/16), (60em/16);
+    background-image: url(../images/bg_hero.png);
+
+    &__title {
+        padding: (65em/16) 0;
+        @include m-inner();
+        font-size: (48em/16);
+        font-weight: bold;
+
+    }
+
+
+}
+
+// about
+.about {
+    &__inner {
+        @include m-inner();
+    }
+
+
+
+}
