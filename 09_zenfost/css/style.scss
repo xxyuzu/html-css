@@ -1,0 +1,264 @@
+@charset"utf-8";
+
+$color-main: #FFFFFF;
+$color-bg: #FFF5DE;
+$color-sub: #DEF6FF;
+$color-accent: #1B2D55;
+$color-end: #E8EDF1;
+
+
+@mixin m-flex($a: center, $j: space-between) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin m-inner($w: (640/740)*100%, $mw: 1000px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@function f-rem($value) {
+    @return ($value/16)+rem;
+}
+
+$breakpoints: (
+    "desktop": "screen and (min-width: 740px)",
+    "nav":"screen and (min-width:1090px)",
+    ) !default;
+
+@mixin m-query($breakpoint: "desktop") {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+body {
+    color: $color-accent;
+    font-size: f-rem(16
+    );
+font-family: Verdana;
+line-height: (24/14);
+letter-spacing: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+// header
+.header {
+    padding: (60em/16) 0;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__navlist {
+        display: none;
+
+
+        @include m-query(desktop) {
+            @include m-flex(space-between);
+
+        }
+    }
+
+
+    .hgnav {
+        @include m-query(desktop) {
+            display: none;
+        }
+
+    }
+
+    &__post {
+        @include m-flex();
+    }
+}
+
+.nav {
+    &__list {
+        display: flex;
+        // padding-right: (30em/14);
+
+    }
+
+    &__item {
+        margin-left: (30em/14);
+    }
+
+
+}
+
+// top
+.top {
+
+    background: url(../images/img_about.png) no-repeat bottom 10% center $color-sub;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        font-size: f-rem(48);
+        font-weight: bold;
+        font-family: Georgia;
+        padding: (150em/48) 0 (80em/48);
+    }
+
+    &__text {
+        padding-bottom: (38em/16);
+    }
+
+    &__item {
+        padding-bottom: (560em/16);
+    }
+
+    .icon {
+        &__item {
+            margin-right: (20em/16);
+        }
+    }
+}
+
+
+// advantages
+
+.advantages {
+    margin: (120em/16) 0;
+    text-align: center;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        font-size: f-rem(48);
+        font-weight: bold;
+        font-family: Georgia;
+        letter-spacing: (48/50);
+    }
+
+    .post {
+        padding: (80em/16) 0;
+
+        &__title {
+            font-size: f-rem(36);
+            font-weight: bold;
+            font-family: Georgia;
+            padding: (40em/36);
+        }
+
+        &__text {
+            padding-bottom: (60em/16);
+        }
+
+        .btn {
+
+            background-color: $color-accent ;
+            color: $color-main;
+            font-weight: bold;
+            font-size: f-rem(14);
+            letter-spacing: (14/50);
+            padding: (20em/14) (46em/14);
+        }
+    }
+}
+
+// features
+.features {
+    background-color: $color-bg;
+    padding: (120em/16) 0;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        text-align: center;
+        font-size: f-rem(48);
+        font-weight: bold;
+        font-family: Georgia;
+        letter-spacing: (48/50);
+    }
+
+    .card {
+        padding: (60em/16) 0;
+
+        &__title {
+            font-size: f-rem(36);
+            font-weight: bold;
+            font-family: Georgia;
+            padding-bottom: (40em/36);
+        }
+
+        &__text {
+            padding-bottom: (60em/16);
+
+
+            &::after {
+                margin-top: (40em/14);
+                content: "";
+                display: block;
+                width: (60em/14);
+                border-bottom: 1px $color-accent solid;
+            }
+        }
+
+        &__category {
+            padding-bottom: (40em/12);
+
+            .tag {
+                background-color: $color-main;
+                color: $color-accent;
+                font-size: f-rem(12);
+                font-weight: bold;
+                padding: (15em/12)(30em/12);
+                margin-right: (20em/12);
+                border-radius: (40em/12);
+            }
+        }
+    }
+}
+
+
+
+
+// footer
+.footer {
+    text-align: center;
+    background-color: $color-end;
+
+    &__inner {
+        @include m-inner();
+
+    }
+
+    &__title {
+        padding: (120em/36) 0 (40em/36);
+        font-size: f-rem(36);
+        font-weight: bold;
+        font-family: Georgia;
+    }
+
+    .contact {
+        @include m-flex();
+
+        &__text {
+            margin-left: -(17em/16);
+        }
+    }
+
+    &__copy {
+        display: block;
+        padding: (60em/14) 0 (200em/14);
+        font-weight: bold;
+
+    }
+}
